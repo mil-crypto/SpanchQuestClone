@@ -6,10 +6,10 @@ TagManager:
   tags:
   - Water
   - Lava
-  - MrCrabs
   - LeftPoint
   - RightPoint
   - Floor
+  - Zombi
   layers:
   - Default
   - TransparentFX

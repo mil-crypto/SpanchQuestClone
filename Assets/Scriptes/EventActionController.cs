@@ -14,13 +14,16 @@ public class EventActionController : MonoBehaviour
     public static event Action StopGameAction;
 
     public static event Action LavaTouchWaterAction;
-    public static event Action LavaTouchCrabsAction;
+    public static event Action LavaTouchZombiAction;
 
     public static event Action ActivateBublesAction;
 
     public static event Action EndExplosionBombAction;
 
     public static event Action MusicButtonClickAction;
+
+    public static event Action OpenBlockAction;
+    public static event Action ZombiCollisionPlayerAction;
 
     public static void GetRestartEvent()
     {
@@ -52,9 +55,9 @@ public class EventActionController : MonoBehaviour
         ButtonClickAction?.Invoke();
     }
 
-    public static void GetLavaTouchCrabsEvent()
+    public static void GetLavaTouchZombiEvent()
     {
-        LavaTouchCrabsAction?.Invoke();
+        LavaTouchZombiAction?.Invoke();
         WinGameAction?.Invoke();
     }
 
@@ -81,5 +84,14 @@ public class EventActionController : MonoBehaviour
     public static void GetMusicButtonClickAction()
     {
         MusicButtonClickAction?.Invoke();
+    }
+
+    public static void GetOpenBlockAction()
+    {
+        OpenBlockAction?.Invoke();
+    }
+    public static void GetZombiCollisionPlayerAction()
+    {
+        ZombiCollisionPlayerAction?.Invoke();
     }
 }

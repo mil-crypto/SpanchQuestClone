@@ -14,8 +14,8 @@ public class Lava : MonoBehaviour
                 Destroy(collision.gameObject);
                 Destroy(gameObject);
                 break;
-            case true when collision.collider.CompareTag("MrCrabs"):
-                EventActionController.GetLavaTouchCrabsEvent();
+            case true when collision.collider.CompareTag("Zombi"):
+                EventActionController.GetLavaTouchZombiEvent();
                 break;
         }
     }

@@ -8272,7 +8272,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &599188676
 Animator:
   serializedVersion: 5
@@ -8319,8 +8319,8 @@ MonoBehaviour:
   - {fileID: 853757815}
   - {fileID: 1630607440}
   m_Bounds:
-    m_Center: {x: 0.009248674, y: -0.0026522875, z: 0}
-    m_Extent: {x: 0.7529986, y: 0.9444998, z: 0}
+    m_Center: {x: 0.009248614, y: -0.0026522875, z: 0}
+    m_Extent: {x: 0.7529985, y: 0.9444997, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -16101,7 +16101,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1172930449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16488,8 +16488,8 @@ MonoBehaviour:
   - {fileID: 533713326}
   - {fileID: 988258336}
   m_Bounds:
-    m_Center: {x: 0.0034104586, y: -0.064285874, z: 0}
-    m_Extent: {x: 1.4391253, y: 1.1285717, z: 0}
+    m_Center: {x: 0.0034105778, y: -0.064285636, z: 0}
+    m_Extent: {x: 1.4391253, y: 1.1285714, z: 0}
   m_UseBatching: 1
   m_AlwaysUpdate: 1
   m_AutoRebind: 0
@@ -18452,7 +18452,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278730676}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.0754, y: -6.6872, z: -0.23959905}
+  m_LocalPosition: {x: 0.98, y: -3.84, z: -0.23959905}
   m_LocalScale: {x: 0.2249, y: 0.2249, z: 0.2249}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -18999,7 +18999,7 @@ GameObject:
   - component: {fileID: 1341001249}
   - component: {fileID: 1341001248}
   m_Layer: 0
-  m_Name: zombie (1)
+  m_Name: nuby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -19085,7 +19085,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1341001247}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.934, y: -6.6872, z: -0.23959905}
+  m_LocalPosition: {x: -0.8785999, y: -3.84, z: -0.23959905}
   m_LocalScale: {x: 0.2249, y: 0.2249, z: 0.2249}
   m_ConstrainProportionsScale: 0
   m_Children: []

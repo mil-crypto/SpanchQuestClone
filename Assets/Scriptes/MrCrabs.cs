@@ -42,7 +42,7 @@ public class MrCrabs : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventActionController.LavaTouchCrabsAction += MrCrabsLooseAnim;
+        EventActionController.LavaTouchZombiAction += MrCrabsLooseAnim;
         EventActionController.EndGameAction += MrCrabsWinAnim;
         EventActionController.EndGameAction += MrCrabsRemoveCollider;
         EventActionController.WinGameAction += MrCrabsRemoveCollider;
@@ -50,7 +50,7 @@ public class MrCrabs : MonoBehaviour
 
     private void OnDisable()
     {
-        EventActionController.LavaTouchCrabsAction -= MrCrabsLooseAnim;
+        EventActionController.LavaTouchZombiAction -= MrCrabsLooseAnim;
         EventActionController.EndGameAction -= MrCrabsWinAnim;
         EventActionController.EndGameAction -= MrCrabsRemoveCollider;
         EventActionController.WinGameAction -= MrCrabsRemoveCollider;
