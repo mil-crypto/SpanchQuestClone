@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-//using YG;
+using YG;
 
 public class UiManager : MonoBehaviour
 {
@@ -13,12 +13,18 @@ public class UiManager : MonoBehaviour
 
     [Header("FailPanel")]
     [SerializeField] private Transform _failEndPlace, _fail, _restartButtomFailPlace, _restartButtomFail;
+
+    private string _lang;
+    private void Awake()
+    {
+        _lang= YandexGame.EnvironmentData.language;
+        SwitchLanguage("eng");
+    }
     void Start()
     {
         _endGamePanel.SetActive(false);
         _winGamePanel.SetActive(false);
-        SwitchLanguage(PlayerPrefs.GetString("lang"));
-        Debug.Log("Lang= " + PlayerPrefs.GetString("lang"));
+        Debug.Log("Lang= " + _lang);
         _levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
     }
     private void OnEnable()
