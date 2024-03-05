@@ -9,7 +9,6 @@ public class BombAura : MonoBehaviour
     private List<Collider2D> _tachingList = new();
     [SerializeField] private int _amountOfFluids;
     [SerializeField] private GameObject _explosionEffect;
-    [SerializeField] private GameObject _sadSpanchBob;
     [SerializeField] private Vector2 _scaleVector;
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -65,7 +64,6 @@ public class BombAura : MonoBehaviour
                 {
                     EventActionController.GetEndGameEvent();
                     Destroy(list[i].gameObject);
-                    _sadSpanchBob.SetActive(false);
                 }
                 else
                 {

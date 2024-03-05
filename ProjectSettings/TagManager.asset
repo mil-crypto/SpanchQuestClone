@@ -10,6 +10,8 @@ TagManager:
   - RightPoint
   - Floor
   - Zombi
+  - MrCrabs
+  - Jevelry
   layers:
   - Default
   - TransparentFX
