@@ -1,4 +1,3 @@
-using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,28 +7,34 @@ public class BombAura : MonoBehaviour
     [SerializeField] private float _timer;
     private List<Collider2D> _tachingList = new();
     [SerializeField] private int _amountOfFluids;
-    [SerializeField] private GameObject _explosionEffect;
+    //[SerializeField] private GameObject _explosionEffect;
     [SerializeField] private Vector2 _scaleVector;
+    private Animator _animator;
+
+    private void Start()
+    {
+        _animator = GetComponentInParent<Animator>();
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Lava") || collision.gameObject.CompareTag("Water"))
         {
-            for (int i=0;i<_tachingList.Count;i++)
-            {
-                if (_tachingList.Count > 0)
-                {
-                    if (collision.GetHashCode() == _tachingList[i].GetHashCode())
-                    {
-                        return;
-                    }
-                }
-                else if(_tachingList.Count==0)
-                {
+            //for (int i=0;i<_tachingList.Count;i++)
+           // {
+               // if (_tachingList.Count > 0)
+               // {
+                  //  if (collision.GetHashCode() == _tachingList[i].GetHashCode())
+                   // {
+                   //     return;
+                   // }
+               // }
+               // else if(_tachingList.Count==0)
+                //{
                     _tachingList.Add(collision);
-                }    
-            }
-            _tachingList.Add(collision);
-            if (_tachingList.Count != 0 && _tachingList.Count >= _amountOfFluids)
+               // }    
+           // }
+            //_tachingList.Add(collision);
+            if ( _tachingList.Count >= _amountOfFluids)
             {
                 StartCoroutine(Explosion(_tachingList));
             }
@@ -53,7 +58,8 @@ public class BombAura : MonoBehaviour
 
     private IEnumerator Explosion(List<Collider2D> list)
     {
-        transform.parent.DOScale(_scaleVector, 0.6f).SetLoops(-1, LoopType.Yoyo);
+        //transform.parent.DOScale(_scaleVector, 0.6f).SetLoops(-1, LoopType.Yoyo);
+        _animator.SetBool("Explose", true);
         yield return new WaitForSeconds(_timer);
 
         for (int i = 0; i < list.Count; i++)
@@ -81,12 +87,12 @@ public class BombAura : MonoBehaviour
         }
         Destroy(transform.parent.gameObject);
         EventActionController.GetEndExplosionBombAction();
-        ActivateExplosionEffect();
+       // ActivateExplosionEffect();
     }
 
     private void ActivateExplosionEffect()
     {
-        var effect = Instantiate(_explosionEffect);
-        effect.transform.position = transform.position;
+        //var effect = Instantiate(_explosionEffect);
+       // effect.transform.position = transform.position;
     }
 }

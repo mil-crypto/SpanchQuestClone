@@ -18,7 +18,7 @@ public class UiManager : MonoBehaviour
     private void Awake()
     {
         _lang= YandexGame.EnvironmentData.language;
-        SwitchLanguage("eng");
+        SwitchLanguage("_lang");
     }
     void Start()
     {
