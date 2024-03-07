@@ -21,7 +21,5 @@ public class DraggingReturnable : MonoBehaviour
         {
             transform.DOMove(_startPosition, _speed);
         }
-        else
-            Debug.Log("CURPOS= " + curPos + "    STARTPOS= " + _startPosition + "    POSTOMOVE= " + _positionToMove);
     }
 }

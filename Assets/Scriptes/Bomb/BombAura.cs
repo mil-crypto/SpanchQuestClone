@@ -7,7 +7,7 @@ public class BombAura : MonoBehaviour
     [SerializeField] private float _timer;
     private List<Collider2D> _tachingList = new();
     [SerializeField] private int _amountOfFluids;
-    //[SerializeField] private GameObject _explosionEffect;
+    [SerializeField] private GameObject _explosionEffect;
     [SerializeField] private Vector2 _scaleVector;
     private Animator _animator;
 
@@ -17,7 +17,7 @@ public class BombAura : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Lava") || collision.gameObject.CompareTag("Water"))
+        if (collision.gameObject.CompareTag("Lava") || collision.gameObject.CompareTag("Water")|| collision.gameObject.CompareTag("Jevelry"))
         {
             //for (int i=0;i<_tachingList.Count;i++)
            // {
@@ -44,10 +44,11 @@ public class BombAura : MonoBehaviour
             _tachingList.Add(collision);
             StartCoroutine(Explosion(_tachingList));
         }
-        else if (collision.TryGetComponent(out MrCrabs _) )
+        else if (collision.gameObject.CompareTag("Zombi"))
         {
             _tachingList.Add(collision);
             StartCoroutine(Explosion(_tachingList));
+            
         }
         else if(collision.TryGetComponent(out Bomb _))
         {
@@ -71,6 +72,11 @@ public class BombAura : MonoBehaviour
                     EventActionController.GetEndGameEvent();
                     Destroy(list[i].gameObject);
                 }
+                if (list[i].gameObject.CompareTag("Zombi"))
+                {
+                    EventActionController.GetWinGameEvent();
+                    Destroy(list[i].gameObject);
+                }
                 else
                 {
                     Destroy(list[i].gameObject);
@@ -87,12 +93,12 @@ public class BombAura : MonoBehaviour
         }
         Destroy(transform.parent.gameObject);
         EventActionController.GetEndExplosionBombAction();
-       // ActivateExplosionEffect();
+        ActivateExplosionEffect();
     }
 
     private void ActivateExplosionEffect()
     {
-        //var effect = Instantiate(_explosionEffect);
-       // effect.transform.position = transform.position;
+        var effect = Instantiate(_explosionEffect);
+        effect.transform.position = transform.position;
     }
 }

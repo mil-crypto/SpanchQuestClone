@@ -2719,6 +2719,7 @@ GameObject:
   - component: {fileID: 539931358}
   - component: {fileID: 539931357}
   - component: {fileID: 539931356}
+  - component: {fileID: 539931360}
   m_Layer: 0
   m_Name: SelectorOn
   m_TagString: Untagged
@@ -2839,6 +2840,18 @@ Transform:
   m_Father: {fileID: 1990881095}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &539931360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539931355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a77e9c71c335ca443a93f8efd825605c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &575756150
 GameObject:
   m_ObjectHideFlags: 0
@@ -2988,6 +3001,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timer: 3
   _amountOfFluids: 12
+  _explosionEffect: {fileID: 3420616922323195266, guid: 7459497d5d98a4b4da6b8adc52dba1c3, type: 3}
   _scaleVector: {x: 0, y: 0}
 --- !u!1 &639771431
 GameObject:
@@ -5612,14 +5626,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1292011228}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
   m_LocalPosition: {x: -1.65, y: 0.2, z: -0.039599046}
   m_LocalScale: {x: 0.19999999, y: 0.19999999, z: 0.22489999}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 117958668}
   m_RootOrder: 13
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!61 &1292011230
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -5661,7 +5675,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 3.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -5691,8 +5705,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99741f192ecbb644bb9581d61d2a80a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 0
-  _direction: -1
+  _speed: 1
+  _direction: 1
   _zombiAnimator: {fileID: 1292011234}
 --- !u!95 &1292011234
 Animator:

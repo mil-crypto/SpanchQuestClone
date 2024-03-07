@@ -2082,10 +2082,10 @@ RectTransform:
   m_Father: {fileID: 1201887589}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0.47967696, y: 0.49057442}
+  m_AnchorMax: {x: 0.50463843, y: 0.5061714}
+  m_AnchoredPosition: {x: 0.7889956, y: 0.17718518}
+  m_SizeDelta: {x: 97.50174, y: 98.4483}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &500177203
 GameObject:
@@ -4332,7 +4332,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1114408729}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.051, z: 0}
+  m_LocalPosition: {x: 0, y: -1.056, z: 0}
   m_LocalScale: {x: 1.5384614, y: 1.4285713, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5979,6 +5979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _timer: 3
   _amountOfFluids: 12
+  _explosionEffect: {fileID: 3420616922323195266, guid: 7459497d5d98a4b4da6b8adc52dba1c3, type: 3}
   _scaleVector: {x: 0, y: 0}
 --- !u!1 &1684750514
 GameObject:
@@ -6876,7 +6877,7 @@ MonoBehaviour:
   _bubleAudioSource: {fileID: 1985824885}
   _steamSound: {fileID: 8300000, guid: 9db4984552bec254eb58546d7ec42014, type: 3}
   _bubleSound: {fileID: 8300000, guid: 258dab48cb83f024d940948f75eb4354, type: 3}
-  _explosionSound: {fileID: 0}
+  _explosionSound: {fileID: 8300000, guid: b9260a0dd76e1c0449a986b57d7f1ef2, type: 3}
   _winSounds:
   - {fileID: 8300000, guid: 0e02a675c1a4d8e479eb8cd846b5ab5f, type: 3}
   - {fileID: 8300000, guid: 15bb9e119c4c8dd46acbd781748d1565, type: 3}
