@@ -23,6 +23,8 @@ public class EventActionController : MonoBehaviour
     public static event Action MusicButtonClickAction;
 
     public static event Action OpenBlockAction;
+    public static event Action OpenBlockAction2; 
+    public static event Action OpenBlockAction3;
     public static event Action ZombiCollisionPlayerAction;
 
     public static void GetRestartEvent()
@@ -89,6 +91,14 @@ public class EventActionController : MonoBehaviour
     public static void GetOpenBlockAction()
     {
         OpenBlockAction?.Invoke();
+    }
+    public static void GetOpenBlockAction2()
+    {
+        OpenBlockAction2?.Invoke();
+    }
+    public static void GetOpenBlockAction3()
+    {
+        OpenBlockAction3?.Invoke();
     }
     public static void GetZombiCollisionPlayerAction()
     {

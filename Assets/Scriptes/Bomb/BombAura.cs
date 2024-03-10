@@ -9,6 +9,7 @@ public class BombAura : MonoBehaviour
     [SerializeField] private int _amountOfFluids;
     [SerializeField] private GameObject _explosionEffect;
     [SerializeField] private Vector2 _scaleVector;
+    [SerializeField] private bool _zombiDeadBool;
     private Animator _animator;
 
     private void Start()
@@ -19,21 +20,8 @@ public class BombAura : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Lava") || collision.gameObject.CompareTag("Water")|| collision.gameObject.CompareTag("Jevelry"))
         {
-            //for (int i=0;i<_tachingList.Count;i++)
-           // {
-               // if (_tachingList.Count > 0)
-               // {
-                  //  if (collision.GetHashCode() == _tachingList[i].GetHashCode())
-                   // {
-                   //     return;
-                   // }
-               // }
-               // else if(_tachingList.Count==0)
-                //{
-                    _tachingList.Add(collision);
-               // }    
-           // }
-            //_tachingList.Add(collision);
+            _tachingList.Add(collision);
+
             if ( _tachingList.Count >= _amountOfFluids)
             {
                 StartCoroutine(Explosion(_tachingList));
@@ -59,7 +47,6 @@ public class BombAura : MonoBehaviour
 
     private IEnumerator Explosion(List<Collider2D> list)
     {
-        //transform.parent.DOScale(_scaleVector, 0.6f).SetLoops(-1, LoopType.Yoyo);
         _animator.SetBool("Explose", true);
         yield return new WaitForSeconds(_timer);
 
@@ -74,7 +61,9 @@ public class BombAura : MonoBehaviour
                 }
                 if (list[i].gameObject.CompareTag("Zombi"))
                 {
+                    if (!_zombiDeadBool) { 
                     EventActionController.GetWinGameEvent();
+                    }
                     Destroy(list[i].gameObject);
                 }
                 else

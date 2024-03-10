@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,12 +8,18 @@ using YG;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] private GameObject _endGamePanel, _winGamePanel , _engSuccesImage, _ruSuccesImage, _engFailImage, _ruFailImage;
+    [SerializeField] private GameObject _hint;
+    private Transform _startHintTransform;
+
+    [SerializeField] private bool _isFirstLevel;
+
     [SerializeField] private TextMeshProUGUI _levelText;
     [Header("SuccesPanel")]
     [SerializeField] private Transform _succesPanelEndPlace, _succesPanel, _restartButtomWinEndPlace, _restartButtomWin;
 
     [Header("FailPanel")]
     [SerializeField] private Transform _failEndPlace, _fail, _restartButtomFailPlace, _restartButtomFail;
+
 
     private string _lang;
     private void Awake()
@@ -22,6 +29,15 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
+        _startHintTransform = _hint.transform;
+        if (_isFirstLevel)
+        {
+            RewardedForVideo();
+        }
+        else
+        {
+            _hint.SetActive(false);
+        }
         _endGamePanel.SetActive(false);
         _winGamePanel.SetActive(false);
         Debug.Log("Lang= " + _lang);
@@ -38,6 +54,8 @@ public class UiManager : MonoBehaviour
         EventActionController.EndGameAction += RestartFailButtonAnim;
 
         EventActionController.UpdateLevelAction += UpdateLevelNumber;
+
+        YandexGame.CloseVideoEvent += RewardedForVideo;
     }
 
     private void OnDisable()
@@ -51,6 +69,8 @@ public class UiManager : MonoBehaviour
         EventActionController.EndGameAction -= RestartFailButtonAnim;
 
         EventActionController.UpdateLevelAction -= UpdateLevelNumber;
+
+        YandexGame.CloseVideoEvent -= RewardedForVideo;
     }
     public void RestartGame()
     {
@@ -137,4 +157,20 @@ public class UiManager : MonoBehaviour
                 break;
         }
     }
+
+    private IEnumerator Wait(GameObject gameObject)
+    {
+        yield return new WaitForSecondsRealtime(6f);
+        gameObject.SetActive(false);
+    }
+
+
+    private void RewardedForVideo()
+    {
+        _hint.transform.DOScale (new Vector2(1f,1f),0.001f);
+        _hint.SetActive(true);
+        _hint.transform.DOScale(new Vector2(1.6f,1.6f), 0.6f).SetLoops(-1,LoopType.Yoyo);
+        StartCoroutine("Wait",_hint);
+    }
+
 }
