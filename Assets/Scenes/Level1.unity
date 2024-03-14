@@ -970,6 +970,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selector: {fileID: 794288250}
   _block: {fileID: 648947330}
+  _hint: {fileID: 0}
 --- !u!212 &485928977
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1318,6 +1319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selector: {fileID: 1541813720}
   _block: {fileID: 212572409}
+  _hint: {fileID: 0}
 --- !u!212 &636760726
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2960,6 +2962,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selector: {fileID: 485928973}
   _block: {fileID: 648947330}
+  _hint: {fileID: 1273261467}
 --- !u!212 &794288253
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4701,11 +4704,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 5fc053f36b319844b8540f61b330ff66, type: 3}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
   m_Volume: 0.09
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5030,6 +5033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _selector: {fileID: 636760722}
   _block: {fileID: 212572409}
+  _hint: {fileID: 0}
 --- !u!212 &1541813723
 SpriteRenderer:
   m_ObjectHideFlags: 0
