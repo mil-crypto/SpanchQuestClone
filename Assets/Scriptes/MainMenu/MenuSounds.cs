@@ -4,9 +4,10 @@
 public class MenuSounds : MonoBehaviour
 {
     private AudioSource _audioSource;
-    [SerializeField] private AudioClip _bylBylSound;
     [SerializeField] private AudioClip _menuTheme;
-    private int _isSoundOn, _isMusicOn;
+    [SerializeField] private AudioClip _buttonsSound;
+    private int _isMusicOn;
+    private int _isSoundOn;
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -14,22 +15,13 @@ public class MenuSounds : MonoBehaviour
     }
     private void OnEnable()
     {
-        EventActionController.ButtonClickAction += ActivateBylBylSound;
         EventActionController.MusicButtonClickAction += CheckMenuThemeSound;
+        EventActionController.ButtonsSoundAction += ActivateButtonsSound;
     }
     private void OnDisable()
     {
-        EventActionController.ButtonClickAction -= ActivateBylBylSound;
         EventActionController.MusicButtonClickAction -= CheckMenuThemeSound;
-    }
-    private void ActivateBylBylSound()
-    {
-        _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
-        if (_isSoundOn == 1)
-        {
-            _audioSource.PlayOneShot(_bylBylSound);
-        }
-        
+        EventActionController.ButtonsSoundAction -= ActivateButtonsSound;
     }
 
     private void CheckMenuThemeSound()
@@ -44,6 +36,14 @@ public class MenuSounds : MonoBehaviour
         else if(_isMusicOn == 0)
         {
             _audioSource.Stop();
+        }
+    }
+    private void ActivateButtonsSound()
+    {
+        _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
+        if (_isSoundOn == 1)
+        {
+            _audioSource.PlayOneShot(_buttonsSound);
         }
     }
 }

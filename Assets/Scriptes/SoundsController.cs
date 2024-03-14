@@ -5,13 +5,14 @@ public class SoundsController : MonoBehaviour
 {
     private AudioSource _audioSource;
     [SerializeField] private AudioSource _audioSourceLaud;
-    [SerializeField] private AudioSource _bubleAudioSource;
-    [SerializeField] private AudioClip _steamSound;
-    [SerializeField] private AudioClip _bubleSound;
     [SerializeField] private AudioClip _explosionSound;
-    [SerializeField] private AudioClip[] _winSounds;
-    [SerializeField] private AudioClip[] _looseSounds;
+    [SerializeField] private AudioClip _winSounds;
+    [SerializeField] private AudioClip _looseSounds;
     [SerializeField] private AudioClip _gameTheme;
+    [SerializeField] private AudioClip _zombiSound;
+    [SerializeField] private AudioClip _surpriseSound;
+    [SerializeField] private AudioClip _selectorSound;
+    [SerializeField] private AudioClip _buttonsSound;
 
     [SerializeField] private float _audioVolume, _audioLaudVolume;
 
@@ -24,45 +25,72 @@ public class SoundsController : MonoBehaviour
         _isWin = false;
         _isLoose = false;
         CheckGameThemeSound();
-        ActivateBubleSound();
     }
     private void OnEnable()
     {
-        EventActionController.LavaTouchWaterAction += ActivateSteamSound;
         EventActionController.WinGameAction += ActivateWinSound;
         EventActionController.EndGameAction += ActivateLooseSound;
-        EventActionController.ActivateBublesAction += ActivateBubleSound;
         EventActionController.EndExplosionBombAction += ActivateExplosionSound;
         EventActionController.MusicButtonClickAction += CheckGameThemeSound;
+        EventActionController.SelectorAction += ActivateSelectorSound;
+        EventActionController.OpenBlockAction += ActivateSurpriseSound;
+        EventActionController.ZombiSoundAction += ActivateZombiSound;
+        EventActionController.ButtonsSoundAction += ActivateButtonsSound;
     }
     private void OnDisable()
     {
-        EventActionController.LavaTouchWaterAction -= ActivateSteamSound;
         EventActionController.WinGameAction -= ActivateWinSound;
         EventActionController.EndGameAction -= ActivateLooseSound;
-        EventActionController.ActivateBublesAction -= ActivateBubleSound;
         EventActionController.EndExplosionBombAction -= ActivateExplosionSound;
         EventActionController.MusicButtonClickAction -= CheckGameThemeSound;
+        EventActionController.SelectorAction -= ActivateSelectorSound;
+        EventActionController.OpenBlockAction -= ActivateSurpriseSound;
+        EventActionController.ZombiSoundAction -= ActivateZombiSound;
+        EventActionController.ButtonsSoundAction -= ActivateButtonsSound;
     }
 
-    private void ActivateSteamSound()
+    private void ActivateSelectorSound()
+    {
+        _isSoundOn= PlayerPrefs.GetInt("IsSoundOn");
+        if (_isSoundOn==1)
+        {
+            _audioSource.PlayOneShot(_selectorSound);
+        }
+    }
+
+    private void ActivateButtonsSound()
     {
         _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
         if (_isSoundOn == 1)
         {
-            _audioSourceLaud.PlayOneShot(_steamSound);
+            _audioSource.PlayOneShot(_buttonsSound);
+        }
+    }
+    private void ActivateSurpriseSound()
+    {
+        _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
+        var zombi = FindObjectOfType< ZombiCollisions > ();
+        if (_isSoundOn == 1&&zombi!=null)
+        {
+            _audioSource.PlayOneShot(_surpriseSound);
         }
     }
 
+    private void ActivateZombiSound()
+    {
+        _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
+        if (_isSoundOn == 1)
+        {
+            _audioSource.PlayOneShot(_zombiSound);
+        }
+    }
     private void ActivateWinSound()
     {
         SetAudioVolume();
         _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
         if (!_isWin && _isSoundOn == 1)
         {
-            int count = _winSounds.Length;
-            int rand = Random.Range(0, count);
-            _audioSource.PlayOneShot(_winSounds[rand]);
+            _audioSource.PlayOneShot(_winSounds);
             _isWin = true;
         }
         EventActionController.EndGameAction -= ActivateLooseSound;
@@ -73,9 +101,7 @@ public class SoundsController : MonoBehaviour
         _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
         if (!_isLoose && _isSoundOn == 1)
         {
-            int count = _looseSounds.Length;
-            int rand = Random.Range(0, count);
-            _audioSource.PlayOneShot(_looseSounds[rand]);
+            _audioSource.PlayOneShot(_looseSounds);
             _isLoose = true;
         }
         EventActionController.WinGameAction -= ActivateWinSound;
@@ -85,15 +111,6 @@ public class SoundsController : MonoBehaviour
         _audioSource.volume = _audioVolume;
         _audioSourceLaud.volume = _audioLaudVolume;
     } 
-
-    private void ActivateBubleSound()
-    {
-        _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
-        if (_isSoundOn == 1)
-        {
-            _bubleAudioSource.PlayOneShot(_bubleSound);
-        }
-    }
 
     private void ActivateExplosionSound()
     {

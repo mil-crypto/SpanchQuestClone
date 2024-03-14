@@ -12,6 +12,7 @@ public class DraggingReturnable : MonoBehaviour
     }
     private void OnMouseDown()
     {
+        EventActionController.GetSelectorAction();
         Vector3 curPos = transform.position;
         if (curPos == _startPosition)
         {

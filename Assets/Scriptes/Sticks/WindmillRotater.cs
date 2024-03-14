@@ -19,6 +19,7 @@ public class WindmillRotater : MonoBehaviour
     {
         Sequence mySequence = DOTween.Sequence();
         Sequence mySequence2 = DOTween.Sequence();
+        EventActionController.GetSelectorAction();
         if (!_rotateRight)
         {
             mySequence2.Kill();

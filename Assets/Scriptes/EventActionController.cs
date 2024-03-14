@@ -16,8 +16,6 @@ public class EventActionController : MonoBehaviour
     public static event Action LavaTouchWaterAction;
     public static event Action LavaTouchZombiAction;
 
-    public static event Action ActivateBublesAction;
-
     public static event Action EndExplosionBombAction;
 
     public static event Action MusicButtonClickAction;
@@ -25,7 +23,13 @@ public class EventActionController : MonoBehaviour
     public static event Action OpenBlockAction;
     public static event Action OpenBlockAction2; 
     public static event Action OpenBlockAction3;
+
     public static event Action ZombiCollisionPlayerAction;
+    public static event Action ZombiSoundAction;
+
+    public static event Action SelectorAction;
+
+    public static event Action ButtonsSoundAction;
 
     public static void GetRestartEvent()
     {
@@ -68,11 +72,6 @@ public class EventActionController : MonoBehaviour
         UpdateLevelAction?.Invoke();
     }
 
-    public static void GetActivateBublesAction()
-    {
-        ActivateBublesAction?.Invoke();
-    }
-
     public static void GetUpdateLevelInMainMenuAction()
     {
         UpdateLevelInMainMenuAction?.Invoke();
@@ -103,5 +102,20 @@ public class EventActionController : MonoBehaviour
     public static void GetZombiCollisionPlayerAction()
     {
         ZombiCollisionPlayerAction?.Invoke();
+    }
+
+    public static void GetZombiSoundAction()
+    {
+        ZombiSoundAction?.Invoke();
+    }
+
+    public static void GetSelectorAction()
+    {
+        SelectorAction?.Invoke();
+    }
+
+    public static void GetButtonsSoundAction()
+    {
+        ButtonsSoundAction?.Invoke();
     }
 }

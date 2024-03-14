@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using YG;
 
 public class MenuUI : MonoBehaviour
 {
@@ -10,9 +11,15 @@ public class MenuUI : MonoBehaviour
     [SerializeField] private Image _soundImage, _musicImage;
     [SerializeField] private Sprite _on, _of;
     [SerializeField] private GameObject _engChoiceRim, _ruChoiceRim;
+    [SerializeField] private GameObject _ruLogo, _enfLogo;
 
     private int _currLvl;
-
+    private string _lang;
+    private void Awake()
+    {
+        _lang = YandexGame.EnvironmentData.language;
+        SwitchLanguage("_lang");
+    }
     private void Start()
     {
         _lock.SetActive(false);
@@ -39,6 +46,24 @@ public class MenuUI : MonoBehaviour
     {
         EventActionController.UpdateLevelInMainMenuAction -= GetCurentLevel;
     }
+    private void SwitchLanguage(string lang)
+    {
+        switch (lang)
+        {
+            case "ru":
+                _ruLogo.SetActive(true);
+                _enfLogo.SetActive(false);
+                break;
+            case "eng":
+                _ruLogo.SetActive(false);
+                _enfLogo.SetActive(true);
+                break;
+            default:
+                _ruLogo.SetActive(false);
+                _enfLogo.SetActive(true);
+                break;
+        }
+    }
     public void StartGame()
     {
         if (_currLvl <= SceneLoadInfo.GetMaxPassedLvl())
@@ -46,12 +71,14 @@ public class MenuUI : MonoBehaviour
             SceneManager.LoadScene(SceneLoadInfo.GetCurrentLevel());
         }
         EventActionController.GetButtonClickAction();
+        EventActionController.GetButtonsSoundAction();
     }
 
     public void PreviousLevel()
     {
         _currLvl = SceneLoadInfo.GetCurrentLevel();
         int _maxCurLvl = SceneLoadInfo.GetMaxPassedLvl();
+        EventActionController.GetButtonsSoundAction();
 
         if (_currLvl <= 1)
         {
@@ -75,6 +102,7 @@ public class MenuUI : MonoBehaviour
     {
         _currLvl = SceneLoadInfo.GetCurrentLevel();
         int _maxCurLvl = SceneLoadInfo.GetMaxPassedLvl();
+        EventActionController.GetButtonsSoundAction();
 
         if (_maxCurLvl >= SceneLoadInfo.MaxLevel)
             _maxCurLvl = SceneLoadInfo.MaxLevel;
@@ -107,6 +135,7 @@ public class MenuUI : MonoBehaviour
             _soundImage.sprite = _of;
         }
         EventActionController.GetButtonClickAction();
+        EventActionController.GetButtonsSoundAction();
     }
     public void MusicCheck()
     {
@@ -121,6 +150,7 @@ public class MenuUI : MonoBehaviour
             _musicImage.sprite = _of;
         }
         EventActionController.GetMusicButtonClickAction();
+        EventActionController.GetButtonsSoundAction();
     }
 
     private void CheckSoundAndMusic()

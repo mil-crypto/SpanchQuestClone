@@ -1,6 +1,5 @@
 ﻿using DG.Tweening;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using YG;
@@ -13,7 +12,6 @@ public class UiManager : MonoBehaviour
 
     [SerializeField] private bool _isFirstLevel;
 
-    [SerializeField] private TextMeshProUGUI _levelText;
     [Header("SuccesPanel")]
     [SerializeField] private Transform _succesPanelEndPlace, _succesPanel, _restartButtomWinEndPlace, _restartButtomWin;
 
@@ -40,8 +38,6 @@ public class UiManager : MonoBehaviour
         }
         _endGamePanel.SetActive(false);
         _winGamePanel.SetActive(false);
-        Debug.Log("Lang= " + _lang);
-        _levelText.text = SceneManager.GetActiveScene().buildIndex.ToString();
     }
     private void OnEnable()
     {
@@ -52,8 +48,6 @@ public class UiManager : MonoBehaviour
         EventActionController.EndGameAction += OpenEndGamePanel;
         EventActionController.EndGameAction += FailAnim;
         EventActionController.EndGameAction += RestartFailButtonAnim;
-
-        EventActionController.UpdateLevelAction += UpdateLevelNumber;
 
         YandexGame.CloseVideoEvent += RewardedForVideo;
     }
@@ -68,7 +62,6 @@ public class UiManager : MonoBehaviour
         EventActionController.EndGameAction -= FailAnim;
         EventActionController.EndGameAction -= RestartFailButtonAnim;
 
-        EventActionController.UpdateLevelAction -= UpdateLevelNumber;
 
         YandexGame.CloseVideoEvent -= RewardedForVideo;
     }
@@ -76,12 +69,14 @@ public class UiManager : MonoBehaviour
     {
         EventActionController.GetRestartEvent();
         EventActionController.GetButtonClickAction();
+        EventActionController.GetButtonsSoundAction();
     }
     public void NextLevel()
     {
         EventActionController.GetNextLevelEvent();
         EventActionController.GetButtonClickAction();
         EventActionController.GetUpdateLevelAction();
+        EventActionController.GetButtonsSoundAction();
     }
 
     private void OpenEndGamePanel()
@@ -126,13 +121,11 @@ public class UiManager : MonoBehaviour
         SceneManager.LoadScene(0);
         EventActionController.GetButtonClickAction();
         EventActionController.GetUpdateLevelInMainMenuAction();
+        EventActionController.GetButtonsSoundAction();
+
     }
 
-    private void UpdateLevelNumber()
-    {
-        _levelText.text = SceneLoadInfo.GetCurrentLevel().ToString();
-        
-    }
+
     private void SwitchLanguage(string lang)
     {
         switch (lang)
@@ -150,10 +143,10 @@ public class UiManager : MonoBehaviour
                 _ruFailImage.SetActive(false);
                 break;
             default:
-                _ruSuccesImage.SetActive(true);
-                _ruFailImage.SetActive(true);
-                _engSuccesImage.SetActive(false);
-                _engFailImage.SetActive(false);
+                _engSuccesImage.SetActive(true);
+                _engFailImage.SetActive(true);
+                _ruSuccesImage.SetActive(false);
+                _ruFailImage.SetActive(false);
                 break;
         }
     }
