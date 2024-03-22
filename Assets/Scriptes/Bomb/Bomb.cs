@@ -15,7 +15,7 @@ public class Bomb : MonoBehaviour
         {
             _bombRigid.velocity = new Vector2(0, 0);
         }
-        else if (collision.gameObject.CompareTag("Player")||collision.collider.TryGetComponent(out MrCrabs _))
+        else if (collision.gameObject.CompareTag("Player"))
         {
             _bombRigid.velocity = new Vector2(0, _bombRigid.velocity.y);
         }

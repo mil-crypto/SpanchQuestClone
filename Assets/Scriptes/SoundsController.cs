@@ -4,7 +4,7 @@
 public class SoundsController : MonoBehaviour
 {
     private AudioSource _audioSource;
-    [SerializeField] private AudioSource _audioSourceLaud;
+    [SerializeField] private AudioSource _audioSourceGameTheme;
     [SerializeField] private AudioClip _explosionSound;
     [SerializeField] private AudioClip _winSounds;
     [SerializeField] private AudioClip _looseSounds;
@@ -13,8 +13,6 @@ public class SoundsController : MonoBehaviour
     [SerializeField] private AudioClip _surpriseSound;
     [SerializeField] private AudioClip _selectorSound;
     [SerializeField] private AudioClip _buttonsSound;
-
-    [SerializeField] private float _audioVolume, _audioLaudVolume;
 
     private bool _isWin;
     private bool _isLoose;
@@ -86,7 +84,6 @@ public class SoundsController : MonoBehaviour
     }
     private void ActivateWinSound()
     {
-        SetAudioVolume();
         _isSoundOn = PlayerPrefs.GetInt("IsSoundOn");
         if (!_isWin && _isSoundOn == 1)
         {
@@ -106,11 +103,6 @@ public class SoundsController : MonoBehaviour
         }
         EventActionController.WinGameAction -= ActivateWinSound;
     }
-    private void SetAudioVolume()
-    {
-        _audioSource.volume = _audioVolume;
-        _audioSourceLaud.volume = _audioLaudVolume;
-    } 
 
     private void ActivateExplosionSound()
     {
@@ -125,13 +117,13 @@ public class SoundsController : MonoBehaviour
         _isMusicOn = PlayerPrefs.GetInt("IsMusicOn");
         if (_isMusicOn == 1)
         {
-            _audioSource.clip = _gameTheme;
-            _audioSource.loop = true;
-            _audioSource.Play();
+            _audioSourceGameTheme.clip = _gameTheme;
+            _audioSourceGameTheme.loop = true;
+            _audioSourceGameTheme.Play();
         }
         else if (_isMusicOn == 0)
         {
-            _audioSource.Stop();
+            _audioSourceGameTheme.Stop();
         }
     }
 }

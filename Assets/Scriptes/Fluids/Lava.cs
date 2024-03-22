@@ -11,13 +11,13 @@ public class Lava : MonoBehaviour
                 break;
             case true when collision.collider.CompareTag("Water"):
                 EventActionController.GetLavaTouchEvent();
-                Destroy(collision.gameObject);
-                Destroy(gameObject);
+                collision.gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 break;
             case true when collision.collider.CompareTag("Jevelry"):
                 EventActionController.GetLavaTouchEvent();
-                Destroy(collision.gameObject);
-                Destroy(gameObject);
+                collision.gameObject.SetActive(false);
+                gameObject.SetActive(false);
                 break;
             case true when collision.collider.CompareTag("Zombi"):
                 EventActionController.GetLavaTouchZombiEvent();

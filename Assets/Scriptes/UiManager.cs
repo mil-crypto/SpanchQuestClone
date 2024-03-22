@@ -7,10 +7,8 @@ using YG;
 public class UiManager : MonoBehaviour
 {
     [SerializeField] private GameObject _endGamePanel, _winGamePanel , _engSuccesImage, _ruSuccesImage, _engFailImage, _ruFailImage;
+    [SerializeField] private GameObject _rewardedForVideo;
     [SerializeField] private GameObject _hint;
-    private Transform _startHintTransform;
-
-    [SerializeField] private bool _isFirstLevel;
 
     [Header("SuccesPanel")]
     [SerializeField] private Transform _succesPanelEndPlace, _succesPanel, _restartButtomWinEndPlace, _restartButtomWin;
@@ -27,15 +25,7 @@ public class UiManager : MonoBehaviour
     }
     void Start()
     {
-        _startHintTransform = _hint.transform;
-        if (_isFirstLevel)
-        {
-            RewardedForVideo();
-        }
-        else
-        {
-            _hint.SetActive(false);
-        }
+        _rewardedForVideo.SetActive(true);
         _endGamePanel.SetActive(false);
         _winGamePanel.SetActive(false);
     }
@@ -136,7 +126,7 @@ public class UiManager : MonoBehaviour
                 _engSuccesImage.SetActive(false);
                 _engFailImage.SetActive(false);
                 break;
-            case "eng":
+            case "en":
                 _engSuccesImage.SetActive(true);
                 _engFailImage.SetActive(true);
                 _ruSuccesImage.SetActive(false);
@@ -164,6 +154,7 @@ public class UiManager : MonoBehaviour
         _hint.SetActive(true);
         _hint.transform.DOScale(new Vector2(1.6f,1.6f), 0.6f).SetLoops(-1,LoopType.Yoyo);
         StartCoroutine("Wait",_hint);
+        _rewardedForVideo.SetActive(false);
     }
 
 }
